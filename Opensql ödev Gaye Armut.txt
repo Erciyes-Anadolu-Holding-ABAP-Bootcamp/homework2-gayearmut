@@ -1,0 +1,41 @@
+REPORT zga_opensql_hw.
+
+
+TABLES: zga_musteri_t001.
+
+DATA: ls_zga_MUSTERI_T001 TYPE zga_musteri_t001,
+      lt_zga_MUSTERI_T001 TYPE STANDARD TABLE OF zga_musteri_t001.
+
+
+* INSERT
+ls_zga_MUSTERI_T001-musteriid = '8'.
+ls_zga_MUSTERI_T001-musteriad = 'Mustafa'.
+ls_zga_MUSTERI_T001-musterisoyad = 'Kılıç'.
+ls_zga_MUSTERI_T001-musteritel = '741'.
+INSERT INTO zga_musteri_t001 VALUES ls_zga_MUSTERI_T001.
+
+
+* UPDATE
+UPDATE zga_musteri_t001 SET musterisoyad = 'Şahin' WHERE musteriid = '6'.
+
+
+* SELECT
+SELECT * FROM zga_musteri_t001 INTO TABLE lt_zga_MUSTERI_T001 WHERE musteriid = '1'.
+LOOP AT lt_zga_MUSTERI_T001 INTO ls_zga_MUSTERI_T001.
+  WRITE: / ls_zga_MUSTERI_T001-musteriid,
+         ls_zga_MUSTERI_T001-musteriad,
+         ls_zga_MUSTERI_T001-musterisoyad,
+         ls_zga_MUSTERI_T001-musteritel.
+ENDLOOP.
+
+
+* DELETE
+DELETE FROM zga_musteri_t001 WHERE musteriad = 'Fatma'.
+
+
+* MODIFY
+ls_zga_MUSTERI_T001-musteriid = '1'.
+ls_zga_MUSTERI_T001-musteriad = 'Gaye'.
+ls_zga_MUSTERI_T001-musterisoyad = 'Elma'.
+ls_zga_MUSTERI_T001-musteritel = '111'.
+MODIFY zga_musteri_t001 FROM ls_zga_MUSTERI_T001.
